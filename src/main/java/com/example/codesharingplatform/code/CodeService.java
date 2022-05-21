@@ -104,5 +104,27 @@ public class CodeService {
         return this.codeRepository.save(codeSnippet);
     }
 
+    public List<Map<String, Object>> getLatestCodeSnippets() {
+        final ArrayList<Map<String, Object>> snippets = this.codeRepository
+                .findTop10ByIsTimeRestrictedFalseAndIsViewRestrictedFalseOrderByDateDesc()
+                .stream()
+                .map(this::getCodeView)
+                .collect(Collectors.toCollection(ArrayList::new));
+        snippets.forEach(s -> {
+            s.remove("isTimeRestricted");
+            s.remove("isViewRestricted");
+        });
+        return snippets;
+    }
 
+
+    public Map<String, Object> getCodeByIdProxy(Long id) {
+        final Code code = this.codeRepository.findById(id)
+                .orElseThrow(CodeNotFoundException::new);
+
+        final Map<String, Object> snippet = getCodeView(code);
+        snippet.remove("isTimeRestricted");
+        snippet.remove("isViewRestricted");
+        return snippet;
+    }
 }

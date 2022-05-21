@@ -17,8 +17,13 @@ public class CodeRestController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> getCode(@PathVariable("id") long id) {
-        return ResponseEntity.ok(this.codeService.getCodeById(id));
+    public ResponseEntity<?> getCode(@PathVariable("id") Long id) {
+        var snippet = this.codeService.getCodeByIdProxy(id);
+        return ResponseEntity.ok(snippet);
+    }
+    @GetMapping("/latest")
+    public ResponseEntity<?> getLatestCode() {
+        return ResponseEntity.ok(this.codeService.getLatestCodeSnippets());
     }
 
 
