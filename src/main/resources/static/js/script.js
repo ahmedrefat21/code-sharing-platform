@@ -9,7 +9,7 @@ function send() {
     console.log(object)
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", '/api/code/new', false)
+    xhr.open("POST", '/api/v1/code/new', false)
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhr.send(json);
 
