@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{../../css/style.css}">
+  <link rel="stylesheet"
+        href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css">
+  <title>Create</title>
+</head>
+<body>
+<form method="post">
+        <textarea id="code_snippet" rows="5" cols="33">
+         // write your code here
+        </textarea>
+  <label for="time_restriction">time restriction</label>
+  <input id="time_restriction" type="text"/>
+
+  <br>
+
+  <label for="views_restriction">views restriction</label>
+  <input id="views_restriction" type="text"/>
+  <button id="send_snippet" type="submit" onclick="send()">Submit</button>
+</form>
+
+<script th:src="@{../../js/script.js}"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
